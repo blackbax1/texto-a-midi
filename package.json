@@ -43,14 +43,11 @@
       "createDesktopShortcut": true
     },
     "mac": {
-  "target": [
-    {
-      "target": "dmg",
-      "arch": ["universal"]
-    }
-  ],
-  "category": "public.app-category.music"
-}
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
           ]
         }
       ],
