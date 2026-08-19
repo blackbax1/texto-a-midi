@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Texto → MIDI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="t2m-wrap">
+
+  <div class="t2m-eyebrow">Studio tool — piano roll art</div>
+  <div class="t2m-title">Texto → MIDI</div>
+  <div class="t2m-sub">Escribe texto y genera un MIDI que dibuja las letras en el piano roll.</div>
+
+  <div class="t2m-field">
+    <label for="t2m-text">Texto</label>
+    <input type="text" id="t2m-text" maxlength="80" value="Blackbax">
+  </div>
+
+  <div class="t2m-row2">
+    <div>
+      <label for="t2m-root">Nota</label>
+      <select id="t2m-root"></select>
+    </div>
+    <div>
+      <label for="t2m-scale">Escala</label>
+      <select id="t2m-scale">
+        <option value="Minor" selected>Minor</option>
+        <option value="Major">Major</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="t2m-label" id="t2m-label-display"></div>
+
+  <div class="t2m-ctrl-label">Grosor</div>
+  <div class="t2m-segbar" id="t2m-weight-bar"></div>
+  <div class="t2m-ctrl-label">Densidad</div>
+  <div class="t2m-segbar" id="t2m-density-bar"></div>
+  <div class="t2m-ctrl-label">Ancho</div>
+  <div class="t2m-segbar" id="t2m-width-bar"></div>
+
+  <div id="t2m-preview"></div>
+
+  <div class="t2m-advanced-label">Ajustes avanzados</div>
+  <div class="t2m-adv-grid">
+    <div>
+      <div class="t2m-field-label">Octava <span class="t2m-field-value" id="v-octave">-1</span></div>
+      <input type="range" id="t2m-octave" min="-1" max="6" step="1" value="-1"
+             title="Sube o baja la nota elegida arriba una o más octavas.">
+    </div>
+    <div>
+      <div class="t2m-field-label">Tamaño <span class="t2m-field-value" id="v-tamano">480</span></div>
+      <input type="range" id="t2m-tamano" min="0" max="4" step="1" value="3"
+             title="Cuánto dura (en tiempo musical) cada columna. 480 = 1 negra por celda.">
+    </div>
+    <div>
+      <div class="t2m-field-label">Espacio <span class="t2m-field-value" id="v-espacio">1</span></div>
+      <input type="range" id="t2m-espacio" min="0" max="4" step="1" value="1">
+    </div>
+    <div>
+      <div class="t2m-field-label">Inicio <span class="t2m-field-value" id="v-inicio">4</span></div>
+      <input type="range" id="t2m-inicio" min="0" max="16" step="1" value="4"
+             title="Corre el dibujo más adelante en la línea de tiempo, para que no quede pegado al compás 1.">
+    </div>
+  </div>
+
+  <button class="t2m-generate-btn" id="t2m-generate">Generar MIDI</button>
+  <div class="t2m-alert" id="t2m-alert">MIDI generado.</div>
+
+  <div class="t2m-footer">
+    Creado por <a href="https://www.instagram.com/blackbaxbeats/" target="_blank">@blackbaxbeats</a>
+  </div>
+
+</div>
+
+<script src="script.js" defer></script>
+
+</body>
+</html>
