@@ -13,8 +13,8 @@
     "dist:mac": "electron-builder --mac"
   },
   "devDependencies": {
-    "electron": "^31.3.1",
-    "electron-builder": "^24.13.3"
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0"
   },
   "build": {
     "appId": "com.blackbaxbeats.textoamidi",
