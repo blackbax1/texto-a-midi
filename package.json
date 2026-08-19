@@ -1,32 +1,53 @@
-name: Build installers
-
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-
-jobs:
-  build:
-    strategy:
-      matrix:
-        os: [windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - run: npm install
-
-      - run: npm run dist -- --publish never
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: instalador-${{ matrix.os }}
-          path: |
-            dist/*.exe
-            dist/*.dmg
-          if-no-files-found: ignore
+{
+  "name": "texto-a-midi",
+  "version": "1.0.0",
+  "description": "Escribe texto y genera un MIDI que dibuja las letras en el piano roll",
+  "main": "main.js",
+  "author": "blackbaxbeats",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac"
+  },
+  "devDependencies": {
+    "electron": "^31.3.1",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.blackbaxbeats.textoamidi",
+    "productName": "Texto a MIDI",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "renderer/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "category": "public.app-category.music"
+    }
+  }
+}
